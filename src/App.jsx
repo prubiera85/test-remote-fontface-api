@@ -52,6 +52,27 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Preload all external fonts on component mount
+  useEffect(() => {
+    const loadAllFonts = async () => {
+      setIsLoading(true);
+
+      try {
+        const fontPromises = EXTERNAL_FONTS.map(font => loadExternalFont(font));
+        await Promise.all(fontPromises);
+
+        setLoadedFonts(EXTERNAL_FONTS.map(font => font.id));
+        setIsLoading(false);
+      } catch (err) {
+        console.error("Failed to load fonts:", err);
+        setError(`Failed to load fonts: ${err.message}`);
+        setIsLoading(false);
+      }
+    };
+
+    loadAllFonts();
+  }, []);
+
   // Load external font when selected
   useEffect(() => {
     if (selectedFont.isExternal && !loadedFonts.includes(selectedFont.id)) {
@@ -90,14 +111,22 @@ function App() {
           disabled={isLoading}
         >
           {AVAILABLE_FONTS.map((font) => (
-            <option key={font.id} value={font.id}>
+            <option
+              key={font.id}
+              value={font.id}
+              style={{
+                fontFamily: font.isExternal && loadedFonts.includes(font.id)
+                  ? `"${font.family}", system-ui, sans-serif`
+                  : font.family
+              }}
+            >
               {font.name} {font.isExternal ? "(External)" : "(System)"}
             </option>
           ))}
         </select>
       </div>
 
-      {isLoading && <p className="loading">Loading font...</p>}
+      {isLoading && <p className="loading">Loading fonts...</p>}
       {error && <p className="error">{error}</p>}
 
       <FontPreview
