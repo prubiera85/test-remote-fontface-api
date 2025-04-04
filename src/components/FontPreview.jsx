@@ -1,48 +1,53 @@
-import { memo, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { memo, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const FontPreview = ({ font, isReady }) => {
   // Apply font globally when it's ready using CSS variable
   useEffect(() => {
     if (isReady) {
       // Set the CSS variable in :root
-      document.documentElement.style.setProperty('--main-selected-font', `"${font.family}", system-ui, sans-serif`);
+      document.documentElement.style.setProperty(
+        "--main-selected-font",
+        `"${font.family}", system-ui, sans-serif`
+      );
     }
   }, [font.family, isReady]);
-
-  // Apply font styling based on the selected font
-  const textStyle = isReady ? {
-    fontFamily: font.family,
-  } : {
-    // Fallback font while loading or if there's an error
-    fontFamily: 'system-ui, sans-serif',
-  };
 
   return (
     <div className="font-preview-container">
       <h2>Font Preview: {font.name}</h2>
       <div className="font-info">
-        <p><strong>Font ID:</strong> {font.id}</p>
-        <p><strong>Type:</strong> {font.isExternal ? 'External' : 'System'}</p>
+        <p>
+          <strong>Font ID:</strong> {font.id}
+        </p>
+        <p>
+          <strong>Type:</strong> {font.isExternal ? "External" : "System"}
+        </p>
         {font.isExternal && (
           <>
-            <p><strong>URL:</strong> {font.url}</p>
-            <p><strong>Format:</strong> {font.format}</p>
+            <p>
+              <strong>URL:</strong> {font.url}
+            </p>
+            <p>
+              <strong>Format:</strong> {font.format}
+            </p>
           </>
         )}
-        <p><strong>Status:</strong> {isReady ? 'Ready (Available as --main-selected-font)' : 'Loading...'}</p>
+        <p>
+          <strong>Status:</strong>{" "}
+          {isReady ? "Ready (Available as --main-selected-font)" : "Loading..."}
+        </p>
       </div>
 
-      <div className="preview-text" style={textStyle}>
-        <h3 style={textStyle}>Heading with {font.name}</h3>
-        <p style={textStyle}>
-          This is a paragraph set in {font.name}. The quick brown fox jumps over the lazy dog.
-          This sentence demonstrates how the font renders various characters and spacing.
+      <div className="preview-text">
+        <h3>Heading with {font.name}</h3>
+        <p>
+          This is a paragraph set in {font.name}. The quick brown fox jumps over
+          the lazy dog. This sentence demonstrates how the font renders various
+          characters and spacing.
         </p>
-        <p style={textStyle} className="large-text">
-          Large Text Sample
-        </p>
-        <p style={textStyle} className="small-text">
+        <p className="large-text">Large Text Sample</p>
+        <p className="small-text">
           Small text sample for examining details in the font.
         </p>
       </div>
@@ -57,9 +62,9 @@ FontPreview.propTypes = {
     family: PropTypes.string.isRequired,
     isExternal: PropTypes.bool.isRequired,
     url: PropTypes.string,
-    format: PropTypes.string
+    format: PropTypes.string,
   }).isRequired,
-  isReady: PropTypes.bool.isRequired
+  isReady: PropTypes.bool.isRequired,
 };
 
 export default memo(FontPreview);

@@ -69,6 +69,12 @@ export const fetchAvailableFonts = () => {
           name: 'Roboto',
           url: 'https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2',
           format: 'woff2'
+        },
+        {
+          id: 'merriweather',
+          name: 'Merriweather',
+          url: 'https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l52_wFZWMf6.woff2',
+          format: 'woff2'
         }
       ]);
     }, 300);

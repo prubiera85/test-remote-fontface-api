@@ -14,11 +14,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Using --main-selected-font in all typography elements to ensure consistency */
-body, h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, select {
-  font-family: var(--main-selected-font);
-}
-
 a {
   font-weight: 500;
   color: #646cff;

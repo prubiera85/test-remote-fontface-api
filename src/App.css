@@ -58,7 +58,7 @@
   padding: 2rem;
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family: var(--main-selected-font);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -89,7 +89,7 @@ h1 {
   border: 1px solid var(--border-color);
   border-radius: 4px;
   font-size: 1rem;
-  font-family: var(--main-selected-font);
+  font-family: Arial, Helvetica, sans-serif;
   outline: none;
   transition: border-color 0.2s ease;
 }
