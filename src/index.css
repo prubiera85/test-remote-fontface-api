@@ -1,5 +1,6 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --main-selected-font: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--main-selected-font);
   line-height: 1.5;
   font-weight: 400;
 
@@ -11,6 +12,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Using --main-selected-font in all typography elements to ensure consistency */
+body, h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, select {
+  font-family: var(--main-selected-font);
 }
 
 a {

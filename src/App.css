@@ -58,7 +58,7 @@
   padding: 2rem;
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family: system-ui, sans-serif;
+  font-family: var(--main-selected-font);
 }
 
 h1 {
@@ -89,6 +89,7 @@ h1 {
   border: 1px solid var(--border-color);
   border-radius: 4px;
   font-size: 1rem;
+  font-family: var(--main-selected-font);
   outline: none;
   transition: border-color 0.2s ease;
 }
@@ -148,6 +149,7 @@ h1 {
   padding: 1.5rem;
   border: 1px solid var(--border-color);
   border-radius: 4px;
+  font-family: var(--main-selected-font);
 }
 
 .preview-text h3 {

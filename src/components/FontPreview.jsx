@@ -1,7 +1,15 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const FontPreview = ({ font, isReady }) => {
+  // Apply font globally when it's ready using CSS variable
+  useEffect(() => {
+    if (isReady) {
+      // Set the CSS variable in :root
+      document.documentElement.style.setProperty('--main-selected-font', `"${font.family}", system-ui, sans-serif`);
+    }
+  }, [font.family, isReady]);
+
   // Apply font styling based on the selected font
   const textStyle = isReady ? {
     fontFamily: font.family,
@@ -22,7 +30,7 @@ const FontPreview = ({ font, isReady }) => {
             <p><strong>Format:</strong> {font.format}</p>
           </>
         )}
-        <p><strong>Status:</strong> {isReady ? 'Ready' : 'Loading...'}</p>
+        <p><strong>Status:</strong> {isReady ? 'Ready (Available as --main-selected-font)' : 'Loading...'}</p>
       </div>
 
       <div className="preview-text" style={textStyle}>
